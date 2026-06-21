@@ -1,0 +1,40 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**,/address/**,/vehicles/**
+
+        - id: ride-booking-service
+          uri: lb://RIDE-BOOKING-SERVICE
+          predicates:
+            - Path=/ride/**,/bookings/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+# Must match auth-service jwt.secret
+jwt:
+  secret: mySecretKeyForJwtAuthenticationMySecretKey12345
+
+logging:
+  level:
+    root: INFO
+    com.funride: DEBUG

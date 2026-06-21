@@ -1,0 +1,36 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: USER-SERVICE
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    root: INFO
+    com.funride: DEBUG
+  file:
+    path: logs
+
+
+eyJhbGciOiJIUzI1NiJ9:
+  eyJzdWIiOiI5ODc2NTQzMjEwIiwiaWF0IjoxNzgwMTE5MDc3LCJleHAiOjE3ODAyMDU0Nzd9:
+    J2YY7DH8QPGLMugjghRZiAs8DMfAqwZ-sferjnAVpXI:
+
+      {
+        "success": false,
+        "message": "Token has expired",
+        "data": null
+      }

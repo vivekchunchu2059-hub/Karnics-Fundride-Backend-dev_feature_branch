@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  secret: mySecretKeyForJwtAuthenticationMySecretKey12345
+
+  access:
+    expiration-ms: 86400000  #1 day
+
+  refresh:
+    expiration-ms: 2592000000  # 30 days
+
+logging:
+  level:
+    root: INFO
+    com.funride: DEBUG
+  file:
+    path: logs
+
